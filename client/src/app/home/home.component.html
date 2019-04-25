@@ -1,0 +1,10 @@
+﻿<h1>Hi, {{currentUser.login}}!</h1>
+<h3>All registered employees:</h3>
+<ul>
+    <li *ngFor="let employer of employers">
+        1
+        <!--{{employer.email}} ({{user.firstName}} {{user.lastName}})
+        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>-->
+    </li>
+</ul>
+<p><a [routerLink]="['/login']">Logout</a></p>
