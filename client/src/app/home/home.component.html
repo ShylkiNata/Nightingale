@@ -32,8 +32,8 @@
                 <tr *ngFor="let employee of employees; let idx = index">
                     <td><ngb-highlight [result]="employee.full_name"></ngb-highlight></td>
                     <td><ngb-highlight [result]="employee.position"></ngb-highlight></td>
-                    <td><ngb-highlight [result]="employee.salary"></ngb-highlight></td>
-                    <td><ngb-highlight [result]="employee.date_of_birth"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="employee.salary | number:'1.2-2'"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="employee.date_of_birth | date"></ngb-highlight></td>
                     <td>
                         <button (click)="open(employee)" class="btn btn-primary">
                             <fa-icon [icon]="fa.edit"></fa-icon>

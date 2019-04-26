@@ -1,7 +1,7 @@
 ﻿import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from "../_models";
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {first} from "rxjs/operators";
 import { EmployeeTransitService, AlertService } from "../_services";
 import { NgbCalendar, NgbDate, NgbDateStruct, NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
@@ -37,10 +37,6 @@ export class EmployeeModalComponent implements OnInit {
     @Input() employee:Employee = null;
 
     employeeForm: FormGroup;
-    model: NgbDateStruct;
-
-    min: Object;
-    max: Object;
 
     loading = false;
     submitted = false;
@@ -65,11 +61,18 @@ export class EmployeeModalComponent implements OnInit {
     get f() { return this.employeeForm.controls; }
 
     ngOnInit() {
+        let date = new Date(this.employee.date_of_birth);
+        let date_of_birth = {
+            year: date.getFullYear(),
+            month: date.getMonth()+1,
+            day: date.getDate()
+        };
+
         this.employeeForm = this.formBuilder.group({
             full_name: [this.employee.full_name, Validators.required],
             sex: [this.employee.sex, Validators.required],
             contact_information: [this.employee.contact_information, Validators.required],
-            date_of_birth: [this.employee.date_of_birth, Validators.required],
+            date_of_birth: [date_of_birth, Validators.required],
             salary: [this.employee.salary, Validators.required],
             position: [this.employee.position, Validators.required]
         });
@@ -83,6 +86,9 @@ export class EmployeeModalComponent implements OnInit {
         }
 
         this.loading = true;
+
+        let data = this.employeeForm.value;
+        data.date_of_birth = `${data.date_of_birth.year}-${data.date_of_birth.month}-${data.date_of_birth.day}`;
 
         if(!this.employee.id) {
             this.employeeService.create(this.employeeForm.value)

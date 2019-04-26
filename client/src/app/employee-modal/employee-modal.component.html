@@ -37,8 +37,10 @@
                 <label for="date_of_birth">Date of Birth</label>
                 <div class="input-group">
                     <input class="form-control" placeholder="YYYY-MM-DD"
-                           name="dp" [(ngModel)]="model" ngbDatepicker
+                           ngbDatepicker
                            id="date_of_birth"
+                           formControlName="date_of_birth"
+                           [ngClass]="{ 'is-invalid': submitted && f.date_of_birth.errors }"
                            [minDate]="limits.min"
                            [maxDate]="limits.max"
                            [dayTemplate]="customDay"
@@ -48,9 +50,9 @@
                             <fa-icon [icon]="faCalendarDay"></fa-icon>
                         </button>
                     </div>
-                </div>
-                <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
-                    <div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
+                    <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
+                        <div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
