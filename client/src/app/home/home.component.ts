@@ -7,7 +7,7 @@ import { EmployeeModalComponent } from '../employee-modal';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from "@angular/forms";
 
-import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     templateUrl: 'home.component.html'
@@ -16,8 +16,10 @@ import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
     fa: Object = {
         plus: faPlus,
+        edit: faEdit,
         remove: faTrash
     };
+
     employees: Employee[] = [];
     table:Table = new Table();
     filter = new FormControl('');

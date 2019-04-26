@@ -3,6 +3,7 @@
     full_name: string;
     sex: boolean;
     contact_information: string;
+    date_of_birth: number;
     salary: number;
     position: string;
     created: string;

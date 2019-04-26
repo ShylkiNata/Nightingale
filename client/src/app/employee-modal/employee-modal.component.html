@@ -20,17 +20,37 @@
             <div class="form-group">
                 <label>Sex</label>
                 <div class="form-group">
-                    <div class="btn-group btn-group-toggle">
-                        <label class="btn-outline-dark" ngbButtonLabel>
-                            <input type="checkbox" formControlName="sex" ngbButton> Male
+                    <div class="btn-group btn-group-toggle" ngbRadioGroup formControlName="sex">
+                        <label ngbButtonLabel class="btn-outline-dark">
+                            <input ngbButton type="radio" [value]="false"> Male
                         </label>
-                        <label class="btn-outline-dark" ngbButtonLabel>
-                            <input type="checkbox" formControlName="sex" ngbButton> Female
+                        <label ngbButtonLabel class="btn-outline-dark">
+                            <input ngbButton type="radio" [value]="true"> Female
                         </label>
                     </div>
                     <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
                         <div *ngIf="f.sex.errors.required">Sex is required</div>
                     </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth">Date of Birth</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="YYYY-MM-DD"
+                           name="dp" [(ngModel)]="model" ngbDatepicker
+                           id="date_of_birth"
+                           [minDate]="limits.min"
+                           [maxDate]="limits.max"
+                           [dayTemplate]="customDay"
+                           [markDisabled]="isDisabled" #d="ngbDatepicker"/>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                            <fa-icon [icon]="faCalendarDay"></fa-icon>
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
+                    <div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
                 </div>
             </div>
             <div class="form-group">
@@ -72,3 +92,13 @@
                 form="employeeForm">Submit</button>
     </div>
 </div>
+
+<ng-template #customDay let-date let-currentMonth="currentMonth"
+             let-selected="selected"
+             let-disabled="disabled"
+             let-focused="focused">
+  <span class="custom-day" [class.weekend]="isWeekend(date)" [class.focused]="focused"
+        [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+    {{ date.day }}
+  </span>
+</ng-template>

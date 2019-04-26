@@ -8,6 +8,7 @@ const schema = new Schema({
     contact_information: { type: String, required: true },
     salary: { type: Number, required: true },
     position: { type: String, required: true },
+    date_of_birth: { type: Date, required: true },
     created: { type: Date, default: Date.now }
 });
 

@@ -2,7 +2,7 @@
     <form>
         <div class="input-group">
             <input class="form-control"
-                   placeholder="Find the employee by name"
+                   placeholder="Find the employee"
                    [formControl]="filter"/>
             <span class="ml-3 input-group-btn">
                 <button class="btn btn-success" (click)="open()">
@@ -17,24 +17,28 @@
                 (pageChange)="updatePage($event)">
         </ngb-pagination>
     </div>
-    <div>
-        <table class="table table-striped">
+    <div class="table-responsive-lg">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Full Name</th>
                     <th scope="col">Salary</th>
                     <th scope="col">Position</th>
+                    <th scope="col">Date of Birth</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let employee of employees; let idx = index">
                     <td><ngb-highlight [result]="employee.full_name"></ngb-highlight></td>
-                    <td><ngb-highlight [result]="employee.salary"></ngb-highlight></td>
                     <td><ngb-highlight [result]="employee.position"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="employee.salary"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="employee.date_of_birth"></ngb-highlight></td>
                     <td>
-                        <button (click)="open(employee)" class="btn btn-primary">Edit</button>
-                        <button (click)="delete(employee.id)" class="ml-2 btn btn-danger">
+                        <button (click)="open(employee)" class="btn btn-primary">
+                            <fa-icon [icon]="fa.edit"></fa-icon>
+                        </button>
+                        <button (click)="delete(employee.id)" class="ml-md-2 btn btn-danger">
                             <fa-icon [icon]="fa.remove"></fa-icon>
                         </button>
                     </td>
