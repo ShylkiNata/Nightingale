@@ -34,12 +34,6 @@ export class HomeComponent implements OnInit {
         this.fetchEmployeeList();
     }
 
-    /*deleteUser(id: number) {
-        this.userService.delete(id).pipe(first()).subscribe(() => { 
-            this.loadAllUsers() 
-        });
-    }*/
-
     private async fetchEmployeeList() {
         this.employerTransitService.search(this.table).pipe(first()).subscribe(data => {
             this.employees = data.docs;
@@ -65,6 +59,8 @@ export class HomeComponent implements OnInit {
     }
 
     delete(id: number) {
-console.log(id);
+        this.employerTransitService.delete(id).pipe(first()).subscribe(() => {
+            this.fetchEmployeeList();
+        });
     }
 }

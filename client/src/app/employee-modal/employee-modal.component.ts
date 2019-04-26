@@ -60,7 +60,7 @@ export class EmployeeModalComponent implements OnInit {
                     });
         }
         else {
-            this.employeeService.update(this.employeeForm.value)
+            this.employeeService.update(this.employeeForm.value, this.employee.id)
                 .pipe(first())
                 .subscribe(
                     data => {

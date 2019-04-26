@@ -12,12 +12,8 @@ export class EmployeeTransitService {
         return this.http.post(`${config.apiUrl}/employees/create`, employee);
     }
 
-    read() {
-        return this.http.get<Employee[]>(`${config.apiUrl}/employees`);
-    }
-
-    update(employee: Employee) {
-        return this.http.put(`${config.apiUrl}/employees/` + employee.id, employee);
+    update(employee: Employee, id: number) {
+        return this.http.put(`${config.apiUrl}/employees/` + id, employee);
     }
 
     delete(id: number) {
