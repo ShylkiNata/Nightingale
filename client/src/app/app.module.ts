@@ -3,9 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-// used to create fake backend
-//import { fakeBackendProvider } from './_helpers';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
@@ -34,6 +32,7 @@ import { RegisterComponent } from './register';
         NgbModule.forRoot(),
         routing,
         FormsModule,
+        FontAwesomeModule
     ],
     declarations: [
         AppComponent,

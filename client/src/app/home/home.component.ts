@@ -7,12 +7,17 @@ import { EmployeeModalComponent } from '../employee-modal';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from "@angular/forms";
 
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
     templateUrl: 'home.component.html'
 })
 
 export class HomeComponent implements OnInit {
-    authorized: User;
+    fa: Object = {
+        plus: faPlus,
+        remove: faTrash
+    };
     employees: Employee[] = [];
     table:Table = new Table();
     filter = new FormControl('');
@@ -27,7 +32,6 @@ export class HomeComponent implements OnInit {
             this.fetchEmployeeList();
         });
         this.employerDataService.employeeList.subscribe(list => this.employees = list);
-        this.authorized = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
