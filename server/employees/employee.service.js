@@ -4,6 +4,7 @@ const Employee = db.Employee;
 module.exports = {
     create,
     read,
+    search,
     update,
     delete: _delete
 };
@@ -14,8 +15,16 @@ async function create(employeeParam) {
 }
 
 async function read() {
-    console.log(Employee);
     return await Employee.find();
+}
+
+async function search(params) {
+    let condition = !params.search ? {} :
+        { 'full_name' : {'$regex' : params.search, '$options' : 'i' }};
+
+    let result = Employee.paginate(condition, { page: params.page, limit: params.limit });
+
+    return await result;
 }
 
 async function update(id, employeeParam) {

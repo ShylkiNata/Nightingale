@@ -10,6 +10,6 @@ mongoose.connect(url,
 mongoose.Promise = global.Promise;
 
 module.exports = {
-    User: require('../users/user.model'),
-	Employee: require('../employees/employee.model')
+	User: require('../users/user.model'),
+	Employee: require('../employees/employee.model'),
 };

@@ -1,10 +1,49 @@
-﻿<h1>Hi, {{currentUser.login}}!</h1>
-<h3>All registered employees:</h3>
-<ul>
-    <li *ngFor="let employer of employers">
-        1
-        <!--{{employer.email}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>-->
-    </li>
-</ul>
+﻿<h1>Hi, {{authorized.login}}!</h1>
+<div class="col-sm-12 col-md-10 col-lg-8">
+    <div class="d-flex flex-column justify-content-center">
+        <div>
+            <form>
+                <div class="form-group form-inline">
+                    <input class="form-control"
+                        placeholder="Enter the employee to search"
+                        [formControl]="filter"/>
+                </div>
+            </form>
+            <button class="btn btn-success" (click)="open()">
+                Add
+            </button>
+        </div>
+        <div>
+            <div class="d-flex justify-content-between p-2">
+                <ngb-pagination
+                        [collectionSize]="table.total" [(page)]="table.page" [pageSize]="table.limit"
+                        (pageChange)="updatePage($event)">
+                </ngb-pagination>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Position</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees; let idx = index">
+                        <td><ngb-highlight [result]="employee.full_name"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="employee.salary"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="employee.position"></ngb-highlight></td>
+                        <td><button (click)="open(employee)" class="btn btn-outline-primary">Edit</button></td>
+                        <td><button (click)="delete(employee.id)" class="btn btn-outline-danger">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!employees.length" class="text-center">
+            <div>There are no employees yet.</div>
+        </div>
+    </div>
+</div>
 <p><a [routerLink]="['/login']">Logout</a></p>

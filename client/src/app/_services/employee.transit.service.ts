@@ -1,10 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Employee } from '../_models';
+import {Employee, Table} from '../_models';
 
 @Injectable()
-export class EmployeeService {
+export class EmployeeTransitService {
 
     constructor(private http: HttpClient) { }
 
@@ -22,5 +22,9 @@ export class EmployeeService {
 
     delete(id: number) {
         return this.http.delete(`${config.apiUrl}/employees/` + id);
+    }
+
+    search(table: Table) {
+        return this.http.post<any>(`${config.apiUrl}/employees/search`, table);
     }
 }

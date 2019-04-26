@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
+const pagination = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
     full_name: { type: String, required: true },
     sex: { type: Boolean, required: true },
     contact_information: { type: String, required: true },
-    salary: { type: mongoose.Decimal128, required: true },
+    salary: { type: Number, required: true },
     position: { type: String, required: true },
-    created: { type: Date, default: Date.now, required: true }
+    created: { type: Date, default: Date.now }
 });
 
 schema.set('toJSON', { virtuals: true });
+schema.plugin(pagination);
 
-module.exports = mongoose.model('Employee', schema);
+module.exports = mongoose.model('Employees', schema);

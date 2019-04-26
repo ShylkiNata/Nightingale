@@ -1,0 +1,74 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Employer Data</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" id="employeeForm">
+            <div class="form-group">
+                <label for="full_name">Full Name</label>
+                <input type="text" class="form-control"
+                       id="full_name" placeholder="Full Name"
+                       formControlName="full_name"
+                       [ngClass]="{ 'is-invalid': submitted && f.full_name.errors }" />
+                <div *ngIf="submitted && f.full_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.full_name.errors.required">Full Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Sex</label>
+                <div class="form-group">
+                    <div class="btn-group btn-group-toggle">
+                        <label class="btn-outline-dark" ngbButtonLabel>
+                            <input type="checkbox" formControlName="sex" ngbButton> Male
+                        </label>
+                        <label class="btn-outline-dark" ngbButtonLabel>
+                            <input type="checkbox" formControlName="sex" ngbButton> Female
+                        </label>
+                    </div>
+                    <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
+                        <div *ngIf="f.sex.errors.required">Sex is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary</label>
+                <input type="number" class="form-control"
+                       id="salary" placeholder="Salary"
+                       formControlName="salary"
+                       [ngClass]="{ 'is-invalid': submitted && f.salary.errors }">
+                <div *ngIf="submitted && f.salary.errors" class="invalid-feedback">
+                    <div *ngIf="f.salary.errors.required">Salary is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="position">Position</label>
+                <input type="text" class="form-control"
+                       id="position" placeholder="Position"
+                       formControlName="position"
+                       [ngClass]="{ 'is-invalid': submitted && f.position.errors }">
+                <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
+                    <div *ngIf="f.position.errors.required">Position is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contact_information">Contact Information</label>
+                <textarea class="form-control" id="contact_information"
+                          placeholder="Contact Information"
+                          formControlName="contact_information"
+                          [ngClass]="{ 'is-invalid': submitted && f.contact_information.errors }"
+                >
+                </textarea>
+                <div *ngIf="submitted && f.contact_information.errors" class="invalid-feedback">
+                    <div *ngIf="f.contact_information.errors.required">Contact Information is required</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark"
+                form="employeeForm">Submit</button>
+    </div>
+</div>
