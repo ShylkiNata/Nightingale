@@ -22,15 +22,15 @@
                 <div class="input-group">
                     <div class="btn-group btn-group-toggle" ngbRadioGroup formControlName="sex">
                         <label ngbButtonLabel class="btn-outline-dark">
-                            <input ngbButton type="radio" [value]="false"> Male
+                            <input ngbButton type="radio" [value]="false" name="sex"> Male
                         </label>
                         <label ngbButtonLabel class="btn-outline-dark">
-                            <input ngbButton type="radio" [value]="true"> Female
+                            <input ngbButton type="radio" [value]="true" name="sex"> Female
                         </label>
                     </div>
-                </div>
-                <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
-                    <div *ngIf="f.sex.errors.required">Sex is required</div>
+                    <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
+                        <div *ngIf="f.sex.errors.required">Sex is required</div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -70,6 +70,7 @@
                 <select class="form-control" id="position" name="position"
                         [ngClass]="{ 'is-invalid': submitted && f.position.errors }"
                         formControlName="position">
+                    <option value="null" disabled [selected]="true">Select employee position</option>
                     <option *ngFor="let position of positions" [ngValue]="position">
                         {{ position.name }}
                     </option>
