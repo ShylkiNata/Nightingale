@@ -1,9 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { Employee, User, Table } from '../_models';
-import { EmployeeService } from '../_services';
-import { EmployeeModalComponent } from '../employee-modal';
+import { Employee, User, Table } from '../../../core/models';
+import { EmployeeService } from '../../../core/services';
+import { EmployeeModalComponent } from '../../particles';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from "@angular/forms";
 

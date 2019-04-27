@@ -1,0 +1,58 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import "variables";
+
+body {
+  position: relative;
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-image: url("~img/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.navbar {
+  border: 1px solid lightgray;
+  padding: 0 30px;
+}
+.navbar-brand {
+  display: flex;
+  background: $gradient-aqua-to-navi;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  font-weight: 500;
+}
+.navbar-brand__img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 7px;
+  background-image: url("~img/favicon.ico");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.container {
+  background: white;
+  padding-top: 20px;
+  height: 100%;
+}
+.card--width-350 {
+  width: 350px;
+  border: 2px solid $teal;
+}
+.card-header {
+  padding: 0;
+}
+.card-header__title {
+  font-size: 20px;
+  padding: 8px 0;
+  color: #fff;
+  text-align: center;
+
+  background: $teal;
+  background: $gradient-teal-to-aqua;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$teal, endColorstr=$teal, GradientType=1);
+}

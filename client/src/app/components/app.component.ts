@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Router, NavigationEnd } from "@angular/router";
-import { AuthenticationService } from "./_services";
+import { AuthenticationService } from "../core/services";
 
 @Component({
     selector: 'app',

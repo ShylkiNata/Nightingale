@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
-import { AlertService, AuthenticationService } from '../_services';
+import { AlertService, AuthenticationService } from '../../../core/services';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {

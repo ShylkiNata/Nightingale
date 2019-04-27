@@ -5,22 +5,35 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { AppComponent }  from './app.component';
-import { routing }        from './app.routing';
+import { routing } from './app.routing';
 
-import { AlertComponent } from './_directives';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import {
+    JwtInterceptor,
+    ErrorInterceptor
+} from './core/helpers';
+
 import {
     AlertService,
     AuthenticationService,
     EmployeeService
-} from './_services';
+} from './core/services';
 
-import { EmployeeModalComponent } from './employee-modal';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
-import { AuthGuard, NonAuthGuard } from "./_guards";
+import {
+    AuthGuard,
+    NonAuthGuard
+} from "./core/guards";
+
+import {
+    AppComponent,
+
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+
+    AlertComponent,
+    EmployeeModalComponent
+} from './components';
+
 
 @NgModule({
     imports: [
@@ -57,3 +70,6 @@ import { AuthGuard, NonAuthGuard } from "./_guards";
 })
 
 export class AppModule {}
+
+// styles
+import '@/assets/scss/styles.scss';

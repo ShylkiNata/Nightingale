@@ -1,9 +1,9 @@
 ﻿import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Employee } from "../_models";
+import { Employee } from "../../../core/models";
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {first} from "rxjs/operators";
-import { EmployeeService, AlertService } from "../_services";
+import { EmployeeService, AlertService } from "../../../core/services";
 import { NgbCalendar, NgbDate, NgbDateStruct, NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 
