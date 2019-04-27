@@ -1,4 +1,4 @@
 {
-	"connectionString": "mongodb://127.0.0.1:27017/administration",
+	"url": "mongodb://127.0.0.1:27017/administration",
     "secret": "KOZAK-GROUP-KAFK1EJhpWinmm1YycqB"
 }

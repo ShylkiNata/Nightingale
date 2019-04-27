@@ -1,8 +1,7 @@
 const config = require('config.json');
 const mongoose = require('mongoose');
 
-const url = process.env.MONGODB_URI || config.connectionString;
-mongoose.connect(url, 
+mongoose.connect(config.url,
 	{ 
 		useCreateIndex: true, 
 		useNewUrlParser: true 

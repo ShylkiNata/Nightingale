@@ -1,0 +1,10 @@
+{
+  "model": "User",
+  "documents": [
+    {
+      "login": "admin",
+      "email": "admin@example.com",
+      "password": "nightingale"
+    }
+  ]
+}
