@@ -14,6 +14,7 @@ app.use(jwt());
 
 app.use('/users', require('./controllers/user'));
 app.use('/employees', require('./controllers/employee'));
+app.use('/positions', require('./controllers/position'));
 
 app.use(errorHandler);
 

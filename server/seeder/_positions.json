@@ -1,0 +1,23 @@
+{
+  "model": "Position",
+  "documents": [
+    {
+      "name": "Software application developer"
+    },
+    {
+      "name": "Web developer"
+    },
+    {
+      "name": "Database administrator"
+    },
+    {
+      "name": "Computer systems engineer"
+    },
+    {
+      "name": "Computer programmer"
+    },
+    {
+      "name": "Network system administrator"
+    }
+  ]
+}

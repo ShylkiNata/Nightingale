@@ -1,4 +1,4 @@
-const config = require('config.json');
+const config = require('../config.json');
 const mongoose = require('mongoose');
 
 mongoose.connect(config.url,
@@ -11,4 +11,5 @@ mongoose.Promise = global.Promise;
 module.exports = {
 	User: require('../models/user'),
 	Employee: require('../models/employee'),
+	Position: require('../models/position')
 };

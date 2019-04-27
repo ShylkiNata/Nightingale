@@ -15,7 +15,8 @@ import {
 import {
     AlertService,
     AuthenticationService,
-    EmployeeService
+    EmployeeService,
+    PositionService
 } from './core/services';
 
 import {
@@ -59,6 +60,7 @@ import {
         AlertService,
         AuthenticationService,
         EmployeeService,
+        PositionService,
         NgbActiveModal,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -1,22 +1,28 @@
 const config = require('../config.json');
-const data = [
-    require('./users.js'),
-    require('./employees.json')
-];
-
 const seeder = require('mongoose-seed');
 
 seeder.connect(config.url, function() {
 
     seeder.loadModels([
+        './models/position.js',
         './models/user.js',
         './models/employee.js'
     ]);
 
-    seeder.clearModels(['User', 'Employees'], function() {
-        seeder.populateModels(data, function() {
-            seeder.disconnect();
+    seeder.clearModels(['Position', 'User', 'Employees'], function() {
+        seeder.populateModels([
+            require('./_positions.json'),
+            require('./_users.js'),
+        ], () => {
+            console.info('Running async seeder');
+            runAsyncSeeders().then(() => {
+                seeder.disconnect();
+                console.info('Finished');
+            });
         });
     });
 });
 
+async function runAsyncSeeders() {
+    return await require('./_employees.js');
+}

@@ -5,17 +5,11 @@ const employeeService = require('../services/employee');
 // routes
 router.post('/create', create);
 router.post('/search', search);
-router.get('/', read);
 router.put('/:id', update);
 router.delete('/:id', _delete);
 
 module.exports = router;
 
-function read(req, res, next) {
-    employeeService.read()
-        .then(employees => res.json(employees))
-        .catch(err => next(err));
-}
 function search(req, res, next) {
     employeeService.search(req.body)
         .then(employees => res.json(employees))

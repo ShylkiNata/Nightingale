@@ -5,6 +5,6 @@
     contact_information: string;
     date_of_birth: number;
     salary: number;
-    position: string;
+    position: Object|string;
     created: string;
 }

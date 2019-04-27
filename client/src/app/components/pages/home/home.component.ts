@@ -2,7 +2,7 @@
 import { first } from 'rxjs/operators';
 
 import { Employee, User, Table } from '../../../core/models';
-import { EmployeeService } from '../../../core/services';
+import { EmployeeService, PositionService } from '../../../core/services';
 import { EmployeeModalComponent } from '../../particles';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from "@angular/forms";
@@ -21,11 +21,13 @@ export class HomeComponent implements OnInit {
     };
 
     employees: Employee[] = [];
+    positions: Array<Object>;
     table:Table = new Table();
     filter = new FormControl('');
 
     constructor(private employerService: EmployeeService,
-                private modalService: NgbModal) {
+                private modalService: NgbModal,
+                private positionService: PositionService) {
 
         this.filter.valueChanges.pipe().subscribe(text => {
             this.table.page = 1;
@@ -36,6 +38,13 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.fetchEmployeeList();
+        this.fetchPositionList();
+    }
+
+    private async fetchPositionList() {
+        this.positionService.read().pipe(first()).subscribe(data => {
+            this.positions = data;
+        });
     }
 
     private async fetchEmployeeList() {

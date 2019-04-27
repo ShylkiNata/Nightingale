@@ -34,7 +34,7 @@
                     <tr *ngFor="let employee of employees; let idx = index">
                         <td>{{ (idx+1)+table.limit*(table.page-1) }}</td>
                         <td><ngb-highlight [result]="employee.full_name"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="employee.position"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="employee.position.name"></ngb-highlight></td>
                         <td><ngb-highlight [result]="employee.salary | number:'1.2-2'"></ngb-highlight></td>
                         <td><ngb-highlight [result]="employee.date_of_birth | date"></ngb-highlight></td>
                         <td>

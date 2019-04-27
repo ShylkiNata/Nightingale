@@ -6,6 +6,7 @@ module.exports = {
     {
       "login": "admin",
       "email": "admin@example.com",
-      "password": bcrypt.hashSync("nightingale", 10)    }
+      "password": bcrypt.hashSync("nightingale", 10)
+    }
   ]
 };

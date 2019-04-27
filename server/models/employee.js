@@ -3,16 +3,36 @@ const pagination = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    full_name: { type: String, required: true },
-    sex: { type: Boolean, required: true },
-    contact_information: { type: String, required: true },
-    salary: { type: Number, required: true },
-    position: { type: String, required: true },
-    date_of_birth: { type: Date, required: true },
-    created: { type: Date, default: Date.now }
+    full_name: {
+        type: String,
+        required: true
+    },
+    sex: {
+        type: Boolean,
+        required: true
+    },
+    contact_information: {
+        type: String,
+        required: true
+    },
+    salary: {
+        type: Number,
+        required: true
+    },
+    date_of_birth: {
+        type: Date,
+        required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    position: {
+        ref: 'Position',
+        type: mongoose.Schema.Types.ObjectId
+    }
 });
 
-schema.set('toJSON', { virtuals: true });
 schema.set('useFindAndModify', false);
 schema.plugin(pagination);
 
