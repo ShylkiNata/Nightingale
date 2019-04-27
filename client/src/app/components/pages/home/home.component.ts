@@ -7,7 +7,7 @@ import { EmployeeModalComponent } from '../../particles';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from "@angular/forms";
 
-import { faPlus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     templateUrl: 'home.component.html'
@@ -16,7 +16,7 @@ import { faPlus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
     fa: Object = {
         plus: faPlus,
-        edit: faEdit,
+        edit: faPencilAlt,
         remove: faTrash
     };
 
