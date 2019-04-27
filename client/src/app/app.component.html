@@ -1,3 +1,33 @@
-﻿<div class="container">
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        <img src="./src/assets/favicon.ico" />
+        <span>Nightingale</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <div *ngIf="isAuthorized; else guestActions">
+            <button (click)="logout()"
+                    class="btn btn-outline-info">Logout <fa-icon [icon]="faSignOutAlt"></fa-icon>
+            </button>
+        </div>
+        <ng-template #guestActions>
+            <button (click)="navigateTo('/login')"
+                    class='btn'
+                    [ngClass]="{'btn-primary': activeRoute == '/login',
+                                'btn-outline-primary': activeRoute == '/register' }">Sign In
+            </button>
+            <button (click)="navigateTo('/register')"
+                    class="btn ml-2"
+                    [ngClass]="{'btn-primary': activeRoute == '/register',
+                                'btn-outline-primary': activeRoute == '/login' }">Sign Up
+            </button>
+        </ng-template>
+    </div>
+</nav>
+
+<div class="home">
     <router-outlet></router-outlet>
 </div>

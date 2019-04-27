@@ -4,14 +4,14 @@ import { BehaviorSubject } from 'rxjs';
 import { Employee } from '../_models';
 
 @Injectable()
-export class EmployeeDataService {
+export class UserDataService {
 
     private employees = new BehaviorSubject([]);
     employeeList = this.employees.asObservable();
 
     constructor() { }
 
-    setEmployeeList(employees: Employee[]) {
+    setUser(employees: Employee[]) {
         this.employees.next(employees)
     }
     addToEmployeeList(item: Employee) {

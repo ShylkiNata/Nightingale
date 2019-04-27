@@ -16,7 +16,7 @@ import {
     AuthenticationService,
     UserService,
     EmployeeTransitService,
-    EmployeeDataService
+    UserDataService
 } from './_services';
 
 import { EmployeeModalComponent } from './employee-modal';
@@ -48,7 +48,7 @@ import { RegisterComponent } from './register';
         AuthenticationService,
         UserService,
         EmployeeTransitService,
-        EmployeeDataService,
+        UserDataService,
         NgbActiveModal,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

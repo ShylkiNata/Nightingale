@@ -10,6 +10,56 @@
 
     <style>
         a { cursor: pointer }
+        body {
+           position: relative;
+        }
+        .home {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-image: url("./src/assets/bg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            background: white;
+            padding-top: 20px;
+            height: 100%;
+        }
+        .card--width-350 {
+            width: 350px;
+            border: 2px solid #17a2b8;
+        }
+        .card-header {
+            padding: 0;
+        }
+        .navbar {
+            border: 1px solid lightgray;
+            padding: 0 30px;
+        }
+        .navbar-brand {
+            background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 24px;
+            font-weight: 500;
+        }
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            margin-right: 7px;
+        }
+        .card-header__title {
+            font-size: 20px;
+            background-color: #17a2b8;
+            padding: 8px 0;
+            color: #fff;
+            text-align: center;
+
+            background: rgba(23,163,184,1);
+            background: linear-gradient(to right, rgba(23,163,184,1) 0%, rgba(45,203,224,1) 25%, rgba(51,190,214,1) 52%, rgba(126,220,232,1) 76%, rgba(23,163,184,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#17a3b8', endColorstr='#17a3b8', GradientType=1 );
+        }
     </style>
 </head>
 <body>

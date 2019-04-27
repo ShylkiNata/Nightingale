@@ -2,11 +2,13 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
 import { AlertService, AuthenticationService } from '../_services';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
+    faAngleDoubleRight = faAngleDoubleRight;
     loginForm: FormGroup;
     loading = false;
     submitted = false;
