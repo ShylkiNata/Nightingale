@@ -45,13 +45,16 @@ export class EmployeeModalComponent implements OnInit {
     get f() { return this.employeeForm.controls; }
 
     ngOnInit() {
-        let date = new Date(this.employee.date_of_birth);
-        let date_of_birth = {
-            year: date.getFullYear(),
-            month: date.getMonth()+1,
-            day: date.getDate()
-        };
+        let date_of_birth = null;
 
+        if (this.employee.date_of_birth) {
+            let date = new Date(this.employee.date_of_birth);
+            date_of_birth = {
+                year: date.getFullYear(),
+                month: date.getMonth() + 1,
+                day: date.getDate()
+            };
+        }
         this.employeeForm = this.formBuilder.group({
             full_name: [this.employee.full_name, Validators.required],
             sex: [this.employee.sex, Validators.required],
