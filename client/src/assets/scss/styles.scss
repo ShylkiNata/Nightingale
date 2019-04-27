@@ -3,6 +3,8 @@
 
 body {
   position: relative;
+  font-family: $ff-open-sans;
+  font-size: 14px;
 }
 
 button {
@@ -94,4 +96,9 @@ button {
 }
 .hidden {
   display: none;
+}
+.employee-table {
+  tr > td:not(:first-child) {
+    min-width: 130px;
+  }
 }
