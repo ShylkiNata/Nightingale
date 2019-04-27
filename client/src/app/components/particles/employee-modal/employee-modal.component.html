@@ -28,7 +28,7 @@
                             <input ngbButton type="radio" [value]="true" name="sex"> Female
                         </label>
                     </div>
-                    <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && f.sex.errors" class="invalid-feedback d-block">
                         <div *ngIf="f.sex.errors.required">Sex is required</div>
                     </div>
                 </div>
