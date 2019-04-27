@@ -32,7 +32,7 @@ export class AuthenticationService {
     }
 
     async logout() {
-        this.user.next(null);
+        this.user.next(undefined);
         await localStorage.removeItem('currentUser');
     }
 

@@ -1,7 +1,7 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Router, NavigationEnd } from "@angular/router";
-import {AuthenticationService} from "./_services";
+import { AuthenticationService } from "./_services";
 
 @Component({
     selector: 'app',
@@ -15,12 +15,12 @@ export class AppComponent {
 
     constructor(private router: Router,
                 private authService: AuthenticationService) {
+
         this.registerRouteListener();
         this.subscribeToAuthEvents();
     }
 
     logout() {
-        this.isAuthorized = false;
         this.authService.logout()
             .then(() => {
                 this.navigateTo('/login');

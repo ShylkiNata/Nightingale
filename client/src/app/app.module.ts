@@ -9,7 +9,6 @@ import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
 import { AlertComponent } from './_directives';
-import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import {
     AlertService,
@@ -21,6 +20,7 @@ import { EmployeeModalComponent } from './employee-modal';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { AuthGuard, NonAuthGuard } from "./_guards";
 
 @NgModule({
     imports: [
@@ -42,6 +42,7 @@ import { RegisterComponent } from './register';
     ],
     providers: [
         AuthGuard,
+        NonAuthGuard,
         AlertService,
         AuthenticationService,
         EmployeeService,
@@ -52,7 +53,7 @@ import { RegisterComponent } from './register';
     entryComponents: [
         EmployeeModalComponent
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [ AppComponent ]
 })
 
-export class AppModule { }
+export class AppModule {}
