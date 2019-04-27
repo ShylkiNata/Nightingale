@@ -10,26 +10,6 @@ import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 @Component({
     selector: 'employee-modal',
     templateUrl: './employee-modal.component.html',
-    styles: [`
-    .custom-day {
-      text-align: center;
-      padding: 0.185rem 0.25rem;
-      border-radius: 0.25rem;
-      display: inline-block;
-      width: 2rem;
-    }
-    .custom-day:hover, .custom-day.focused {
-      background-color: #e6e6e6;
-    }
-    .weekend {
-      background-color: #f0ad4e;
-      border-radius: 1rem;
-      color: white;
-    }
-    .hidden {
-      display: none;
-    }
-  `]
 })
 
 export class EmployeeModalComponent implements OnInit {
@@ -43,8 +23,8 @@ export class EmployeeModalComponent implements OnInit {
     faCalendarDay = faCalendarDay;
 
     constructor(
+        private activeModal: NgbActiveModal,
         private formBuilder: FormBuilder,
-        public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private employeeService: EmployeeService,
         private calendar: NgbCalendar
