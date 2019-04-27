@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from "rxjs";
+import {User} from "../_models";
 
 @Injectable()
 export class AuthenticationService {
@@ -26,7 +27,12 @@ export class AuthenticationService {
             }));
     }
 
+    register(user: User) {
+        return this.http.post(`${config.apiUrl}/users/register`, user);
+    }
+
     async logout() {
+        this.user.next(null);
         await localStorage.removeItem('currentUser');
     }
 

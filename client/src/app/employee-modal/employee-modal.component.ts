@@ -3,7 +3,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from "../_models";
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {first} from "rxjs/operators";
-import { EmployeeTransitService, AlertService } from "../_services";
+import { EmployeeService, AlertService } from "../_services";
 import { NgbCalendar, NgbDate, NgbDateStruct, NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 
@@ -46,7 +46,7 @@ export class EmployeeModalComponent implements OnInit {
         private formBuilder: FormBuilder,
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
-        private employeeService: EmployeeTransitService,
+        private employeeService: EmployeeService,
         private calendar: NgbCalendar
     ) {}
 

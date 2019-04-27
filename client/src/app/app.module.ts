@@ -14,9 +14,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import {
     AlertService,
     AuthenticationService,
-    UserService,
-    EmployeeTransitService,
-    UserDataService
+    EmployeeService
 } from './_services';
 
 import { EmployeeModalComponent } from './employee-modal';
@@ -46,9 +44,7 @@ import { RegisterComponent } from './register';
         AuthGuard,
         AlertService,
         AuthenticationService,
-        UserService,
-        EmployeeTransitService,
-        UserDataService,
+        EmployeeService,
         NgbActiveModal,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {Employee, Table} from '../_models';
 
 @Injectable()
-export class EmployeeTransitService {
+export class EmployeeService {
 
     constructor(private http: HttpClient) { }
 

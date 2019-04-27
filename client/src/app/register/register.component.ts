@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
-import { AlertService, UserService } from '../_services';
+import { AlertService, AuthenticationService } from '../_services';
 
 @Component({templateUrl: 'register.component.html'})
 export class RegisterComponent implements OnInit {
@@ -14,9 +14,9 @@ export class RegisterComponent implements OnInit {
     submitted = false;
 
     constructor(
+        private authService: AuthenticationService,
         private formBuilder: FormBuilder,
         private router: Router,
-        private userService: UserService,
         private alertService: AlertService) { }
 
     ngOnInit() {
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
         this.loading = true;
 
-        this.userService.register(this.registerForm.value)
+        this.authService.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {

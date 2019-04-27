@@ -2,7 +2,7 @@
 import { first } from 'rxjs/operators';
 
 import { Employee, User, Table } from '../_models';
-import { UserDataService, EmployeeTransitService } from '../_services';
+import { EmployeeService } from '../_services';
 import { EmployeeModalComponent } from '../employee-modal';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from "@angular/forms";
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     table:Table = new Table();
     filter = new FormControl('');
 
-    constructor(private employerTransitService: EmployeeTransitService,
+    constructor(private employerService: EmployeeService,
                 private modalService: NgbModal) {
 
         this.filter.valueChanges.pipe().subscribe(text => {
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     }
 
     private async fetchEmployeeList() {
-        this.employerTransitService.search(this.table).pipe(first()).subscribe(data => {
+        this.employerService.search(this.table).pipe(first()).subscribe(data => {
             this.employees = data.docs;
 
             let table = this.table;
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
     }
 
     delete(id: number) {
-        this.employerTransitService.delete(id).pipe(first()).subscribe(() => {
+        this.employerService.delete(id).pipe(first()).subscribe(() => {
             this.fetchEmployeeList();
         });
     }
