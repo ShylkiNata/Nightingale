@@ -16,8 +16,7 @@ export class AppComponent {
     constructor(private router: Router,
                 private authService: AuthenticationService) {
         this.registerRouteListener();
-        console.log('app');
-        this.authService.userEntity.subscribe(data => this.isAuthorized = Boolean(data))
+        this.subscribeToAuthEvents();
     }
 
     logout() {
@@ -38,5 +37,8 @@ export class AppComponent {
                 this.activeRoute = e.url;
             }
         });
+    }
+    subscribeToAuthEvents() {
+        this.authService.userEntity.subscribe(data => this.isAuthorized = Boolean(data));
     }
 }

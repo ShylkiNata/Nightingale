@@ -1,21 +1,18 @@
-﻿import {Injectable, OnInit} from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import {BehaviorSubject} from "rxjs";
-import {Employee, User} from "../_models";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable()
-export class AuthenticationService implements OnInit {
-    private user = new BehaviorSubject(null);
-    userEntity = this.user.asObservable();
+export class AuthenticationService {
+    private user:BehaviorSubject<String>;
+    userEntity:Observable<String>;
 
     constructor(private http: HttpClient) {
-        /*let data = localStorage.getItem('currentUser');
-        this.setUser(data);*/
-    }
+        let data = localStorage.getItem('currentUser');
 
-    ngOnInit() {
-
+        this.user = new BehaviorSubject(data);
+        this.userEntity = this.user.asObservable();
     }
 
     login(email: string, password: string) {

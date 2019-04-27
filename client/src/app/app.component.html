@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
         <div *ngIf="isAuthorized; else guestActions">
             <button (click)="logout()"
-                    class="btn btn-outline-info">Logout <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                    class="btn btn-outline-primary">Logout <fa-icon [icon]="faSignOutAlt"></fa-icon>
             </button>
         </div>
         <ng-template #guestActions>
