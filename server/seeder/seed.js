@@ -1,6 +1,6 @@
 const config = require('../config.json');
 const data = [
-    require('./users.json'),
+    require('./users.js'),
     require('./employees.json')
 ];
 
@@ -19,3 +19,4 @@ seeder.connect(config.url, function() {
         });
     });
 });
+
