@@ -9,8 +9,8 @@ const seeder = require('mongoose-seed');
 seeder.connect(config.url, function() {
 
     seeder.loadModels([
-        './users/user.model.js',
-        './employees/employee.model.js'
+        './models/user.js',
+        './models/employee.js'
     ]);
 
     seeder.clearModels(['User', 'Employees'], function() {

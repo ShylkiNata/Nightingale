@@ -12,8 +12,8 @@ app.use(cors());
 
 app.use(jwt());
 
-app.use('/users', require('./users/user.controller'));
-app.use('/employees', require('./employees/employee.controller'));
+app.use('/users', require('./controllers/user'));
+app.use('/employees', require('./controllers/employee'));
 
 app.use(errorHandler);
 

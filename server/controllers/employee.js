@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const employeeService = require('./employee.service');
+const employeeService = require('../services/employee');
 
 // routes
 router.post('/create', create);
