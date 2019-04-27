@@ -3,7 +3,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from "../../../core/models";
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {first} from "rxjs/operators";
-import { EmployeeService, AlertService } from "../../../core/services";
+import {EmployeeService, AlertService, PositionService} from "../../../core/services";
 import { NgbCalendar, NgbDate, NgbDateStruct, NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,14 +21,18 @@ export class EmployeeModalComponent implements OnInit {
     loading = false;
     submitted = false;
     faCalendarDay = faCalendarDay;
+    positions:Array<Object>;
 
     constructor(
         private activeModal: NgbActiveModal,
         private formBuilder: FormBuilder,
         private alertService: AlertService,
         private employeeService: EmployeeService,
-        private calendar: NgbCalendar
-    ) {}
+        private calendar: NgbCalendar,
+        private positionService: PositionService
+    ) {
+        this.positions = this.positionService.get();
+    }
 
     isDisabled = (date: NgbDate, current: {month: number}) => date.month !== current.month;
     isWeekend = (date: NgbDate) =>  this.calendar.getWeekday(date) >= 6;

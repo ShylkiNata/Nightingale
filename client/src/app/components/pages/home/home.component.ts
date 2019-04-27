@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
     };
 
     employees: Employee[] = [];
-    positions: Array<Object>;
     table:Table = new Table();
     filter = new FormControl('');
 
@@ -42,9 +41,7 @@ export class HomeComponent implements OnInit {
     }
 
     private async fetchPositionList() {
-        this.positionService.read().pipe(first()).subscribe(data => {
-            this.positions = data;
-        });
+        this.positionService.read();
     }
 
     private async fetchEmployeeList() {

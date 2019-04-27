@@ -33,7 +33,6 @@ async function update(id, employeeParam) {
     if (!employee) throw 'Employee not found';
 
     Object.assign(employee, employeeParam);
-
     await employee.save();
 }
 
