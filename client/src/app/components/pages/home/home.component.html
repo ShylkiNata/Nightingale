@@ -1,23 +1,22 @@
 ﻿<div class="container">
     <div class="d-flex flex-column mt-3">
-        <form>
-            <div class="input-group">
-                <input class="form-control"
-                       placeholder="Find the employee"
-                       [formControl]="filter"/>
-                <span class="ml-3 input-group-btn">
-                    <button class="btn btn-success" (click)="open()">
-                        <fa-icon [icon]="fa.plus"></fa-icon>&nbsp; Employee
-                    </button>
-                </span>
-            </div>
-        </form>
-        <div class="d-flex justify-content-center mt-4">
+           <div class="input-group">
+               <input class="form-control"
+                      placeholder="Find the employee"
+                      [(ngModel)]="table.search" (ngModelChange)="search($event)" />
+               <span class="ml-3 input-group-btn">
+                   <button class="btn btn-success" (click)="edit()">
+                       <fa-icon [icon]="fa.plus"></fa-icon>&nbsp; Employee
+                   </button>
+               </span>
+           </div>
+           <div class="d-flex justify-content-center mt-4">
             <ngb-pagination
                     [collectionSize]="table.total" [(page)]="table.page" [pageSize]="table.limit"
                     (pageChange)="updatePage($event)">
             </ngb-pagination>
         </div>
+        <alert></alert>
         <div class="table-responsive-lg">
             <table class="table employee-table">
                 <thead>
@@ -33,12 +32,12 @@
                 <tbody>
                     <tr *ngFor="let employee of employees; let idx = index">
                         <td>{{ (idx+1)+table.limit*(table.page-1) }}</td>
-                        <td><ngb-highlight [result]="employee.full_name"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="employee.position.name"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="employee.salary | number:'1.2-2'"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="employee.date_of_birth | date"></ngb-highlight></td>
+                        <td>{{ employee.full_name }}</td>
+                        <td>{{ employee.position.name }}</td>
+                        <td>{{ employee.salary | number:'1.2-2' }}</td>
+                        <td>{{ employee.date_of_birth | date }}</td>
                         <td>
-                            <button (click)="open(employee)" class="btn btn-success">
+                            <button (click)="edit(employee)" class="btn btn-success">
                                 <fa-icon [icon]="fa.edit"></fa-icon>
                             </button>
                             <button (click)="delete(employee.id)" class="ml-2 btn btn-danger">

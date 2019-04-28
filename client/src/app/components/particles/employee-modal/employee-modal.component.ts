@@ -6,6 +6,12 @@ import {first} from "rxjs/operators";
 import {EmployeeService, AlertService, PositionService} from "../../../core/services";
 import { NgbCalendar, NgbDate, NgbDateStruct, NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { faCalendarDay, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import {Observable} from "rxjs";
+
+interface Action {
+    entity: Observable<Object>,
+    message: string
+}
 
 @Component({
     selector: 'employee-modal',
@@ -85,31 +91,33 @@ export class EmployeeModalComponent implements OnInit {
         let data = this.employeeForm.value;
         data.date_of_birth = `${data.date_of_birth.year}-${data.date_of_birth.month}-${data.date_of_birth.day}`;
 
+        let action = null;
+
         if(!this.employee.id) {
-            this.employeeService.create(this.employeeForm.value)
-                .pipe(first())
-                .subscribe(
-                    data => {
-                        this.updateEmployeeList.emit();
-                        this.alertService.success('Employee added', true);
-                    },
-                    error => {
-                        this.alertService.error(error);
-                        this.loading = false;
-                    });
+            action = {
+                entity: this.employeeService.create(this.employeeForm.value),
+                message: `Employee ${data.full_name} has been added`
+            }
         }
         else {
-            this.employeeService.update(this.employeeForm.value, this.employee.id)
-                .pipe(first())
-                .subscribe(
-                    data => {
-                        this.updateEmployeeList.emit();
-                        this.alertService.success('Employee has been updated', true);
-                    },
-                    error => {
-                        this.alertService.error(error);
-                        this.loading = false;
-                    });
+            action = {
+                entity: this.employeeService.update(this.employeeForm.value, this.employee.id),
+                message: `${data.full_name}'s data has been updated`
+            }
         }
+
+        return this.subscribe(action);
+    }
+
+    subscribe(action: Action) {
+        action.entity.subscribe(
+            data => {
+                this.updateEmployeeList.emit();
+                this.alertService.success(action.message, true);
+            },
+            error => {
+                this.alertService.error(error);
+                this.loading = false;
+            });
     }
 }

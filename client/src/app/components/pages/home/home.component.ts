@@ -2,7 +2,7 @@
 import { first } from 'rxjs/operators';
 
 import { Employee, User, Table } from '../../../core/models';
-import { EmployeeService, PositionService } from '../../../core/services';
+import { AlertService, EmployeeService, PositionService } from '../../../core/services';
 import { EmployeeModalComponent } from '../../particles';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from "@angular/forms";
@@ -22,18 +22,11 @@ export class HomeComponent implements OnInit {
 
     employees: Employee[] = [];
     table:Table = new Table();
-    filter = new FormControl('');
 
     constructor(private employerService: EmployeeService,
                 private modalService: NgbModal,
-                private positionService: PositionService) {
-
-        this.filter.valueChanges.pipe().subscribe(text => {
-            this.table.page = 1;
-            this.table.search = text;
-            this.fetchEmployeeList();
-        });
-    }
+                private positionService: PositionService,
+                private alertService: AlertService) { }
 
     ngOnInit() {
         this.fetchEmployeeList();
@@ -49,7 +42,8 @@ export class HomeComponent implements OnInit {
             this.employees = data.docs;
 
             let table = this.table;
-            this.table = (({ docs, ...table }) => ({...table}))(data)
+            let receivedParams = (({ docs, ...table }) => ({...table}))(data);
+            Object.assign(this.table, receivedParams);
         });
     }
 
@@ -58,7 +52,11 @@ export class HomeComponent implements OnInit {
         this.fetchEmployeeList();
     }
 
-    open(employee:Employee = new Employee()) {
+    search(value: string) {
+        this.fetchEmployeeList();
+    }
+
+    edit(employee: Employee = new Employee()) {
         const modalRef = this.modalService.open(EmployeeModalComponent);
         modalRef.componentInstance.updateEmployeeList.subscribe(() => {
             this.fetchEmployeeList().then(() => {
@@ -69,8 +67,13 @@ export class HomeComponent implements OnInit {
     }
 
     delete(id: number) {
-        this.employerService.delete(id).pipe(first()).subscribe(() => {
-            this.fetchEmployeeList();
-        });
+        this.employerService.delete(id).subscribe(
+            data => {
+                this.fetchEmployeeList();
+                this.alertService.success('Employee has been removed', true);
+            },
+            error => {
+                this.alertService.error(error);
+            });
     }
 }
