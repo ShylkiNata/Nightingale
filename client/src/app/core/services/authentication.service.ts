@@ -17,18 +17,13 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string) {
-        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { email: email, password: password })
-            .pipe(map(user => {
-                if (user && user.token) {
-                    this.setUser(user)
-                }
-
-                return user;
-            }));
+        let query = this.http.post<any>(`${config.apiUrl}/users/authenticate`, { email: email, password: password });
+        return this.handleResponse(query);
     }
 
     register(user: User) {
-        return this.http.post(`${config.apiUrl}/users/register`, user);
+        let query = this.http.post<any>(`${config.apiUrl}/users/register`, user);
+        return this.handleResponse(query);
     }
 
     async logout() {
@@ -39,5 +34,13 @@ export class AuthenticationService {
     setUser(data: String) {
         this.user.next(data);
         localStorage.setItem('currentUser', JSON.stringify(data));
+    }
+
+    handleResponse(query: Observable<any>) {
+        return query.pipe(map(user => {
+            if (user && user.token) {
+                this.setUser(user)
+            }
+        }));
     }
 }

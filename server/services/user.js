@@ -13,12 +13,7 @@ module.exports = {
 async function authenticate({ email, password }) {
     const user = await User.findOne({ 'email': email });
     if (user && bcrypt.compareSync(password, user.password)) {
-        const { password, ...userWithoutHash } = user.toObject();
-        const token = jwt.sign({ sub: user.id }, config.secret);
-        return {
-            ...userWithoutHash,
-            token
-        };
+        return authResponse(user);
     }
 }
 
@@ -29,9 +24,20 @@ async function create(userParam) {
 
     userParam.password = bcrypt.hashSync(userParam.password, 10);
     const user = new User(userParam);
-    await user.save();
+    const model = await user.save();
+
+    return authResponse(model);
 }
 
 async function getById(id) {
     return await User.findById(id).select('-password');
+}
+
+function authResponse(user) {
+    const { password, ...userWithoutHash } = user.toObject();
+    const token = jwt.sign({ sub: user.id }, config.secret);
+    return {
+        ...userWithoutHash,
+        token
+    };
 }
