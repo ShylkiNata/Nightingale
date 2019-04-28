@@ -1,12 +1,11 @@
 ﻿import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee, Position } from "../../../core/models";
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import {first} from "rxjs/operators";
-import {EmployeeService, AlertService, PositionService} from "../../../core/services";
-import { NgbCalendar, NgbDate, NgbDateStruct, NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmployeeService, AlertService, PositionService } from "../../../core/services";
+import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { faCalendarDay, faDollarSign } from '@fortawesome/free-solid-svg-icons';
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 
 interface Action {
     entity: Observable<Object>,
