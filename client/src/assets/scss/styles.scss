@@ -18,87 +18,89 @@ button {
   background-image: url("~img/bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid lightgray;
-  padding: 0 30px;
-  
-  @media (max-width: 767px) {
-    padding: 0 10px;
-  }
+display: flex;
+justify-content: space-between;
+border: 1px solid lightgray;
+padding: 0 30px;
 
-  .btn {
-    @media (max-width: 767px) {
-      font-size: 14px;
-    }
-  }
+@media (max-width: 767px) {
+padding: 0 10px;
+}
+
+.btn {
+@media (max-width: 767px) {
+  font-size: 14px;
+}
+}
 }
 .navbar-brand {
-  display: flex;
-  background: $gradient-aqua-to-navi;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 24px;
-  font-weight: 500;
+display: flex;
+background: $gradient-aqua-to-navi;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-size: 24px;
+font-weight: 500;
 
-  @media (max-width: 767px) {
-    margin: 0;
-  }
+@media (max-width: 767px) {
+margin: 0;
+}
 }
 .navbar-brand__img {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  margin-right: 7px;
-  background-image: url("~img/favicon.ico");
-  background-size: cover;
-  background-repeat: no-repeat;
+display: inline-block;
+width: 40px;
+height: 40px;
+margin-right: 7px;
+background-image: url("~img/favicon.ico");
+background-size: cover;
+background-repeat: no-repeat;
 }
 .container {
-  background: white;
-  padding-top: 20px;
-  height: 100%;
+background: white;
+padding-top: 20px;
+height: 100%;
 }
 .card--width-350 {
-  width: 350px;
-  border: 2px solid $teal;
+width: 350px;
+border: 2px solid $teal;
 }
 .card-header {
-  padding: 0;
+padding: 0;
 }
 .card-header__title {
-  font-size: 20px;
-  padding: 8px 0;
-  color: #fff;
-  text-align: center;
+font-size: 20px;
+padding: 8px 0;
+color: #fff;
+text-align: center;
 
-  background: $teal;
-  background: $gradient-teal-to-aqua;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$teal, endColorstr=$teal, GradientType=1);
+background: $teal;
+background: $gradient-teal-to-aqua;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$teal, endColorstr=$teal, GradientType=1);
 }
 
 .custom-day {
-  text-align: center;
-  padding: 0.185rem 0.25rem;
-  border-radius: 0.25rem;
-  display: inline-block;
-  width: 2rem;
+text-align: center;
+padding: 0.185rem 0.25rem;
+border-radius: 0.25rem;
+display: inline-block;
+width: 2rem;
 }
 .custom-day:hover, .custom-day.focused {
-  background-color: #e6e6e6;
+background-color: #e6e6e6;
 }
 .weekend {
-  background-color: #f0ad4e;
-  border-radius: 1rem;
-  color: white;
+background-color: #f0ad4e;
+border-radius: 1rem;
+color: white;
 }
 .hidden {
-  display: none;
+display: none;
 }
 .employee-table {
-  tr > td:not(:first-child) {
-    min-width: 130px;
-  }
+tr > td:not(:first-child) {
+min-width: 130px;
+}
 }
