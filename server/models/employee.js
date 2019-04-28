@@ -33,8 +33,6 @@ const schema = new Schema({
     }
 });
 
-schema.set('toJSON', { virtuals: true });
-schema.set('useFindAndModify', false);
 schema.plugin(pagination);
 
 module.exports = mongoose.model('Employees', schema);

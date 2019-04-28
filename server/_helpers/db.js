@@ -6,7 +6,11 @@ mongoose.connect(config.url,
 		useCreateIndex: true, 
 		useNewUrlParser: true 
 	});
+
 mongoose.Promise = global.Promise;
+
+mongoose.set('toJSON', { virtuals: true });
+mongoose.set('useFindAndModify', false);
 
 module.exports = {
 	User: require('../models/user'),
