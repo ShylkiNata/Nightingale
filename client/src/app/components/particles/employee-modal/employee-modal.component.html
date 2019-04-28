@@ -41,6 +41,7 @@
                            id="date_of_birth"
                            formControlName="date_of_birth"
                            [ngClass]="{ 'is-invalid': submitted && f.date_of_birth.errors }"
+                           [readOnly]="true"
                            [minDate]="limits.min"
                            [maxDate]="limits.max"
                            [dayTemplate]="customDay"
@@ -69,8 +70,9 @@
                 <label for="position">Position</label>
                 <select class="form-control" id="position" name="position"
                         [ngClass]="{ 'is-invalid': submitted && f.position.errors }"
+                        [compareWith]="compareOptions"
                         formControlName="position">
-                    <option value="null" disabled [selected]="true">Select employee position</option>
+                    <option value="null" disabled [selected]="!employee.position">-- Select employee position --</option>
                     <option *ngFor="let position of positions" [ngValue]="position">
                         {{ position.name }}
                     </option>
@@ -95,10 +97,10 @@
                 <span class="text-primary">Registered: {{ employee.created | date }}</span>
             </div>
         </form>
+        <alert></alert>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-dark"
-                form="employeeForm">Submit</button>
+        <button type="submit" class="btn btn-outline-dark" form="employeeForm">Submit</button>
     </div>
 </div>
 

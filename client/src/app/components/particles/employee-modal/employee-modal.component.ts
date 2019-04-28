@@ -1,6 +1,6 @@
 ﻿import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Employee } from "../../../core/models";
+import { Employee, Position } from "../../../core/models";
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {first} from "rxjs/operators";
 import {EmployeeService, AlertService, PositionService} from "../../../core/services";
@@ -43,6 +43,10 @@ export class EmployeeModalComponent implements OnInit {
     };
 
     get f() { return this.employeeForm.controls; }
+
+    compareOptions(item1: Position, item2: Position) {
+        return item1 && item2 ? item1.id === item2.id : item1 === item2;
+    }
 
     ngOnInit() {
         let date_of_birth = null;
