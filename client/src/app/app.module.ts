@@ -32,7 +32,8 @@ import {
     RegisterComponent,
 
     AlertComponent,
-    EmployeeModalComponent
+    EmployeeModalComponent,
+    NavbarComponent
 } from './components';
 
 
@@ -52,7 +53,8 @@ import {
         EmployeeModalComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        NavbarComponent
     ],
     providers: [
         AuthGuard,
