@@ -33,7 +33,8 @@ import {
 
     AlertComponent,
     EmployeeModalComponent,
-    NavbarComponent
+    NavbarComponent,
+    DatepickerComponent
 } from './components';
 
 
@@ -49,12 +50,15 @@ import {
     ],
     declarations: [
         AppComponent,
-        AlertComponent,
-        EmployeeModalComponent,
+
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        NavbarComponent
+
+        AlertComponent,
+        EmployeeModalComponent,
+        NavbarComponent,
+        DatepickerComponent
     ],
     providers: [
         AuthGuard,

@@ -1,0 +1,27 @@
+﻿<div class="input-group">
+    <input class="form-control" placeholder="YYYY-MM-DD"
+       ngbDatepicker
+       id="date_of_birth"
+
+       [ngClass]="{ 'is-invalid': disabled }"
+       [readOnly]="true"
+       [minDate]="dp.limits.min"
+       [maxDate]="dp.limits.max"
+       [dayTemplate]="customDay"
+       [markDisabled]="dp.isDisabled" #d="ngbDatepicker"/>
+    <div class="input-group-append">
+        <button class="btn btn-outline-success" (click)="d.toggle()" type="button">
+            <fa-icon [icon]="dp.icon"></fa-icon>
+        </button>
+    </div>
+</div>
+
+<ng-template #customDay let-date let-currentMonth="currentMonth"
+             let-selected="selected"
+             let-disabled="disabled"
+             let-focused="focused">
+  <span class="custom-day" [class.weekend]="dp.isWeekend(date)" [class.focused]="focused"
+        [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+    {{ date.day }}
+  </span>
+</ng-template>

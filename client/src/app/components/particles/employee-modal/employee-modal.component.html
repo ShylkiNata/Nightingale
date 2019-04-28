@@ -35,26 +35,12 @@
             </div>
             <div class="form-group">
                 <label for="date_of_birth">Date of Birth *</label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="YYYY-MM-DD"
-                           ngbDatepicker
-                           id="date_of_birth"
-                           formControlName="date_of_birth"
-                           [ngClass]="{ 'is-invalid': submitted && f.date_of_birth.errors }"
-                           [readOnly]="true"
-                           [minDate]="limits.min"
-                           [maxDate]="limits.max"
-                           [dayTemplate]="customDay"
-                           [markDisabled]="isDisabled" #d="ngbDatepicker"/>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-success" (click)="d.toggle()" type="button">
-                            <fa-icon [icon]="fa.calendar"></fa-icon>
-                        </button>
-                    </div>
+
+                    <datepicker [disabled]="submitted && f.date_of_birth.errors"></datepicker>
                     <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
-                        <div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
+                            <div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
                     </div>
-                </div>
+            
             </div>
             <div class="form-group">
                 <label for="salary">Salary *</label>
