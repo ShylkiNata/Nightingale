@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import {first} from "rxjs/operators";
 import {EmployeeService, AlertService, PositionService} from "../../../core/services";
 import { NgbCalendar, NgbDate, NgbDateStruct, NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
-import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'employee-modal',
@@ -20,8 +20,12 @@ export class EmployeeModalComponent implements OnInit {
 
     loading = false;
     submitted = false;
-    faCalendarDay = faCalendarDay;
     positions:Array<Object>;
+
+    fa: Object = {
+        'calendar': faCalendarDay,
+        'dollar': faDollarSign
+    };
 
     constructor(
         private activeModal: NgbActiveModal,

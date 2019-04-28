@@ -1,6 +1,6 @@
 ﻿<div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title">Employee Data</h5>
+        <h5 class="modal-title text-success">{{ employee.full_name ? employee.full_name : 'Employee' }}'s Data</h5>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -8,7 +8,7 @@
     <div class="modal-body">
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" id="employeeForm">
             <div class="form-group">
-                <label for="full_name">Full Name</label>
+                <label for="full_name">Full Name *</label>
                 <input type="text" class="form-control"
                        id="full_name" placeholder="Full Name"
                        formControlName="full_name"
@@ -18,13 +18,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>Sex</label>
+                <label>Sex *</label>
                 <div class="input-group">
                     <div class="btn-group btn-group-toggle" ngbRadioGroup formControlName="sex">
-                        <label ngbButtonLabel class="btn-outline-dark">
+                        <label ngbButtonLabel class="btn-outline-success">
                             <input ngbButton type="radio" [value]="false" name="sex"> Male
                         </label>
-                        <label ngbButtonLabel class="btn-outline-dark">
+                        <label ngbButtonLabel class="btn-outline-success">
                             <input ngbButton type="radio" [value]="true" name="sex"> Female
                         </label>
                     </div>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="date_of_birth">Date of Birth</label>
+                <label for="date_of_birth">Date of Birth *</label>
                 <div class="input-group">
                     <input class="form-control" placeholder="YYYY-MM-DD"
                            ngbDatepicker
@@ -47,8 +47,8 @@
                            [dayTemplate]="customDay"
                            [markDisabled]="isDisabled" #d="ngbDatepicker"/>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-                            <fa-icon [icon]="faCalendarDay"></fa-icon>
+                        <button class="btn btn-outline-success" (click)="d.toggle()" type="button">
+                            <fa-icon [icon]="fa.calendar"></fa-icon>
                         </button>
                     </div>
                     <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
@@ -57,17 +57,24 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="salary">Salary</label>
-                <input type="number" class="form-control"
-                       id="salary" placeholder="Salary"
-                       formControlName="salary"
-                       [ngClass]="{ 'is-invalid': submitted && f.salary.errors }">
-                <div *ngIf="submitted && f.salary.errors" class="invalid-feedback">
-                    <div *ngIf="f.salary.errors.required">Salary is required</div>
+                <label for="salary">Salary *</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="btn btn-outline-success disabled">
+                            <fa-icon [icon]="fa.dollar"></fa-icon>
+                        </div>
+                    </div>
+                    <input type="number" class="form-control"
+                           id="salary" placeholder="Salary"
+                           formControlName="salary"
+                           [ngClass]="{ 'is-invalid': submitted && f.salary.errors }">
+                    <div *ngIf="submitted && f.salary.errors" class="invalid-feedback">
+                        <div *ngIf="f.salary.errors.required">Salary is required</div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="position">Position</label>
+                <label for="position">Position *</label>
                 <select class="form-control" id="position" name="position"
                         [ngClass]="{ 'is-invalid': submitted && f.position.errors }"
                         [compareWith]="compareOptions"
@@ -82,7 +89,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="contact_information">Contact Information</label>
+                <label for="contact_information">Contact Information *</label>
                 <textarea class="form-control" id="contact_information"
                           placeholder="Contact Information"
                           formControlName="contact_information"
@@ -100,7 +107,7 @@
         <alert></alert>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-dark" form="employeeForm">Submit</button>
+        <button type="submit" class="btn btn-success" form="employeeForm">Submit</button>
     </div>
 </div>
 
