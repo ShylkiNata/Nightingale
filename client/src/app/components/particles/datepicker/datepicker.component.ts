@@ -19,7 +19,7 @@ export class DatepickerComponent implements OnInit {
         this.dp = new Datepicker(calendar);
     }
 
-    onChange(event:any){
+    onChange(event: NgbDate): void {
         this.updateDate.emit(this.dp.toStr());
     }
 
