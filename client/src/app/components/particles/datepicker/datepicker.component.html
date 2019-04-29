@@ -2,8 +2,9 @@
     <input class="form-control" placeholder="YYYY-MM-DD"
        ngbDatepicker
        id="date_of_birth"
-
-       [ngClass]="{ 'is-invalid': disabled }"
+       [(ngModel)]="dp.value"
+       (ngModelChange)="onChange($event)"
+       [ngClass]="{ 'is-invalid': disabledCls }"
        [readOnly]="true"
        [minDate]="dp.limits.min"
        [maxDate]="dp.limits.max"

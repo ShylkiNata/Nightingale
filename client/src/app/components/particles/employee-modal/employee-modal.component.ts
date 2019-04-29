@@ -22,13 +22,12 @@ export class EmployeeModalComponent implements OnInit {
     @Input() employee:Employee = null;
 
     employeeForm: FormGroup;
+    positions:Array<Object>;
 
     loading = false;
     submitted = false;
-    positions:Array<Object>;
 
     fa: Object = {
-        'calendar': faCalendarDay,
         'dollar': faDollarSign
     };
 
@@ -43,14 +42,6 @@ export class EmployeeModalComponent implements OnInit {
         this.positions = this.positionService.get();
     }
 
-    isDisabled = (date: NgbDate, current: {month: number}) => date.month !== current.month;
-    isWeekend = (date: NgbDate) =>  this.calendar.getWeekday(date) >= 6;
-
-    limits = {
-        min: {year: new Date().getFullYear()-100, month: 1, day: 1},
-        max: {year: new Date().getFullYear()-18, month: 12, day: 31},
-    };
-
     get f() { return this.employeeForm.controls; }
 
     compareOptions(item1: Position, item2: Position) {
@@ -58,50 +49,39 @@ export class EmployeeModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        let date_of_birth = null;
-
-        if (this.employee.date_of_birth) {
-            let date = new Date(this.employee.date_of_birth);
-            date_of_birth = {
-                year: date.getFullYear(),
-                month: date.getMonth() + 1,
-                day: date.getDate()
-            };
-        }
         this.employeeForm = this.formBuilder.group({
             full_name: [this.employee.full_name, Validators.required],
             sex: [this.employee.sex, Validators.required],
             contact_information: [this.employee.contact_information, Validators.required],
-            date_of_birth: [date_of_birth, Validators.required],
+            date_of_birth: [this.employee.date_of_birth, Validators.required],
             salary: [this.employee.salary, Validators.required],
             position: [this.employee.position, Validators.required]
         });
     }
 
+    onDateUpdate(value: string) {
+        this.f['date_of_birth'].patchValue(value);
+    }
+
     onSubmit() {
         this.submitted = true;
+        this.loading = true;
+        let action = null;
 
         if (this.employeeForm.invalid) {
             return;
         }
 
-        this.loading = true;
-
-        let data = this.employeeForm.value;
-        data.date_of_birth = `${data.date_of_birth.year}-${data.date_of_birth.month}-${data.date_of_birth.day}`;
-
-        let action = null;
-
         if(!this.employee.id) {
             action = {
                 entity: this.employeeService.create(this.employeeForm.value),
-                message: `Employee ${data.full_name} has been added`
+                message: `Employee ${this.employeeForm.value.full_name} has been added`
             }
         }
         else {
             action = {
                 entity: this.employeeService.update(this.employeeForm.value, this.employee.id),
-                message: `${data.full_name}'s data has been updated`
+                message: `${this.employeeForm.value.full_name}'s data has been updated`
             }
         }
 

@@ -34,13 +34,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="date_of_birth">Date of Birth *</label>
-
-                    <datepicker [disabled]="submitted && f.date_of_birth.errors"></datepicker>
-                    <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
-                            <div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
-                    </div>
-            
+                <label>Date of Birth *</label>
+                <datepicker (updateDate)="onDateUpdate($event)"
+                            [initial]="employee.date_of_birth"
+                            [disabledCls]="submitted && f.date_of_birth.errors"></datepicker>
+                <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback d-block">
+                    <div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="salary">Salary *</label>
@@ -96,13 +96,3 @@
         <button type="submit" class="btn btn-success" form="employeeForm">Submit</button>
     </div>
 </div>
-
-<ng-template #customDay let-date let-currentMonth="currentMonth"
-             let-selected="selected"
-             let-disabled="disabled"
-             let-focused="focused">
-  <span class="custom-day" [class.weekend]="isWeekend(date)" [class.focused]="focused"
-        [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
-    {{ date.day }}
-  </span>
-</ng-template>
